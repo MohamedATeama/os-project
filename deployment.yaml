@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: os-project
+spec:
+  selector:
+    matchLabels:
+      app: Project
+
+  replicas: 3
+  template:
+    metadata:
+      name: Project
+      labels:
+        app: Project
+    spec:
+      containers:
+        - image: mohamedteama/project-img
+          name: project-img
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "1"
+          ports:
+            - containerPort: 80
